@@ -14,7 +14,7 @@
 
         <div class="input-group">
             <input type="text" class="form-control" name="name" id="name" placeholder="Name">
-            <input type="text" class="form-control" name="price" id="price" placeholder="Price">
+            <input type="number" class="form-control" name="price" id="price" placeholder="Price">
             <input type="text" class="form-control" name="description" id="description" placeholder="Description">
             <input type="submit" class="btn btn-primary" value="Save">
         </div>
@@ -37,7 +37,6 @@
             <th>Name</th>
             <th>Price</th>
             <th>Description</th>
-            <th>Update</th>
             <th>Delete</th>
         
         </tr>
@@ -49,13 +48,6 @@
                 <td>{{ $product->name }}</td>
                 <td>{{ $product->price }}</td>
                 <td>{{ $product->description }}</td>
-                <td>
-                    <form action="{{route('product.edit', $product->id)}}" method="GET">
-                        @csrf
-                        @method('GET')
-                        <input type="submit" class="btn btn-success" value="Edit">
-                    </form>
-                </td>
                 <td>
                     <form action="{{route('product.destroy', $product->id)}}" method="post">
                         @csrf
