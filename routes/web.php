@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,7 +19,13 @@ Route::get('/', function () {
     return view('home');
 }); 
 
-Route::get('/products',[ProductController::class,'index']);
+Route::get('/register',[AuthController::class,'showRegister'])->name('show.register');
+Route::get('/login',[AuthController::class,'showLogin'])->name('show.login');
+Route::post('/register',[AuthController::class,'register'])->name('register');
+Route::post('/login',[AuthController::class,'login'])->name('login');
+Route::post('/logout',[AuthController::class,'logout'])->name('logout');
+
+Route::get('/products',[ProductController::class,'index'])->middleware('auth');
 Route::get('/products/{id}',[ProductController::class,'show']);
 Route::post('/products', [ProductController::class,'store']);
 Route::get('/products/{id}',[ProductController::class,'edit_page'])->name('product.edit');
